@@ -21,7 +21,7 @@ export class EmployeeListComponent implements OnInit {
     console.log(employeeId);
     this.ApiService.deleteEmployeeById(employeeId).subscribe(
       (response) => {
-        console.log('vrushta :', response);
+        alert('Employee deleted successfully');
         for (let i = 0; i < this.employeeData.length; ++i) {
           if (this.employeeData[i].id_user_data === employeeId) {
             this.employeeData.splice(i, 1);
@@ -34,4 +34,3 @@ export class EmployeeListComponent implements OnInit {
     );
   }
 }
-

@@ -1,8 +1,7 @@
-<form (ngSubmit)="addEmployee()" [formGroup]="form" class="form-container
-  something">
-  <mat-card class="update-form">
-    <mat-card-header class="update-header">
-      <mat-card-title>Employee Information</mat-card-title>
+<form (ngSubmit)="updateEmployee()" [formGroup]="form" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Profile Information</mat-card-title>
     </mat-card-header>
     <mat-card-content>
 
@@ -39,13 +38,13 @@
         <div class="col-md-6">
           <mat-form-field class="full-width">
             <input formControlName="phone" matInput placeholder="Phone number">
-            <mat-error *ngIf="form.controls['phone'].errors?.required">Enter a
-              phone number</mat-error>
-            <mat-error *ngIf="form.controls['phone'].errors?.minlength">Enter a
-              phone number longer than 9 numbers</mat-error>
-            <mat-error *ngIf="form.controls['phone'].errors?.pattern">Phone
-              shoud contain numbers only</mat-error>
           </mat-form-field>
+          <mat-error *ngIf="form.controls['phone'].errors?.required">Enter a
+            phone number</mat-error>
+          <mat-error *ngIf="form.controls['phone'].errors?.minlength">Enter a
+            phone number longer than 9 numbers</mat-error>
+          <mat-error *ngIf="form.controls['phone'].errors?.pattern">Phone shoud
+            contain numbers only</mat-error>
         </div>
       </div>
 
@@ -57,10 +56,10 @@
               an address</mat-error>
             <mat-error *ngIf="form.controls['address'].errors?.minlength">Enter
               a longer address</mat-error>
+
           </mat-form-field>
         </div>
       </div>
-
 
       <mat-form-field appearance="fill">
         <mat-label>Department</mat-label>
@@ -98,8 +97,7 @@
 
     </mat-card-content>
     <mat-card-actions>
-      <button type="submit" mat-raised-button class="btn-submit"
-        color="primary">Add</button>
+      <button type="submit" mat-raised-button color="primary">Save</button>
     </mat-card-actions>
   </mat-card>
 </form>

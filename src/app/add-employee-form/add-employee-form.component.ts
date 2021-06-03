@@ -23,13 +23,44 @@ export class AddEmployeeFormComponent implements OnInit {
     private apiService: ApiService
   ) {
     this.form = this.formBuilder.group({
-      firstName: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(15),Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$')]],
-      lastName: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(15),Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$')]],
-      phone: ['',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10),Validators.maxLength(14)]],
-      address: ['',[Validators.required,Validators.minLength(4),Validators.maxLength(60)]],
-      department: ['',[Validators.required]],
-      position: ['',[Validators.required]],
-      salary: ['',[Validators.required,Validators.pattern("^[0-9]*$")]],
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(15),
+          Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$'),
+        ],
+      ],
+      lastName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(15),
+          Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$'),
+        ],
+      ],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]*$'),
+          Validators.minLength(10),
+          Validators.maxLength(14),
+        ],
+      ],
+      address: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(60),
+        ],
+      ],
+      department: ['', [Validators.required]],
+      position: ['', [Validators.required]],
+      salary: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
   }
 
@@ -62,7 +93,10 @@ export class AddEmployeeFormComponent implements OnInit {
           position: this.form.value.position.id_position,
           salary: this.form.value.salary,
         })
-        .subscribe(() => this.router.navigate(['/employees']));
+        .subscribe(() => {
+          this.router.navigate(['/employees']);
+          alert('Employee successfully added!');
+        });
     }
   }
 }

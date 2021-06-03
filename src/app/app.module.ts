@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
@@ -13,20 +13,22 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
+import { AuthModule } from './auth/auth.module';
 
-import { ApiService } from './services/api.service';
-import { FormComponent } from './form/form.component';
+import { FormComponent } from './form/update-employee-form.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.component';
+import { AuthorizationInterceptor } from './auth/authorization.interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
     EmployeeListComponent,
-    AddEmployeeFormComponent
-   ],
+    AddEmployeeFormComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,8 +43,16 @@ import { AddEmployeeFormComponent } from './add-employee-form/add-employee-form.
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    AuthModule,
+    RouterModule,
   ],
-  providers: [ApiService],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

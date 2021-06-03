@@ -40,7 +40,7 @@
 }
 
 button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -51,41 +51,40 @@ button {
   cursor: pointer;
 }
 
-.btn-delete{
-  background-color: #e65563; /* Green */
+.btn-delete {
+  background-color: #e65563;
 }
 
-.btn-delete:hover{
+.btn-delete:hover {
   background-color: #ff6b79;
 }
 
-.btn-delete:active{
+.btn-delete:active {
   background-color: #c44b56;
 }
 
-.btn-update{
+.btn-update {
   background-color: #009879;
 }
 
-.btn-update:hover{
+.btn-update:hover {
   background-color: #02b38e;
 }
 
-.btn-update:active{
+.btn-update:active {
   background-color: #018a6e;
 }
 
-.btn-add{
+.btn-add {
   background-color: #009879;
   font-size: 28px;
   padding: 20px 100px;
 }
 
-.btn-add:hover{
+.btn-add:hover {
   background-color: #02b38e;
 }
 
-.btn-add:active{
+.btn-add:active {
   background-color: #018a6e;
 }
-

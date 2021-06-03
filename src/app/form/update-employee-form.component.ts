@@ -8,8 +8,8 @@ import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css'],
+  templateUrl: './update-employee-form.html',
+  styleUrls: ['./update-employee-form.css'],
 })
 export class FormComponent {
   employeeData: EmployeeData;
@@ -24,13 +24,44 @@ export class FormComponent {
     private apiService: ApiService
   ) {
     this.form = this.formBuilder.group({
-      firstName: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(15),Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$')]],
-      lastName: ['',[Validators.required,Validators.minLength(3),Validators.maxLength(15),Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$')]],
-      phone: ['',[Validators.required,Validators.pattern("^[0-9]*$"),Validators.minLength(10),Validators.maxLength(14)]],
-      address: ['',[Validators.required,Validators.minLength(5),Validators.maxLength(60)]],
-      department: ['',[Validators.required]],
-      position: ['',[Validators.required]],
-      salary: ['',[Validators.required,Validators.pattern("^[0-9]*$")]],
+      firstName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(15),
+          Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$'),
+        ],
+      ],
+      lastName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(15),
+          Validators.pattern('^([A-Z][a-z]*((\\s[A-Za-z])?[a-z]*)*)$'),
+        ],
+      ],
+      phone: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^[0-9]*$'),
+          Validators.minLength(10),
+          Validators.maxLength(14),
+        ],
+      ],
+      address: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(5),
+          Validators.maxLength(60),
+        ],
+      ],
+      department: ['', [Validators.required]],
+      position: ['', [Validators.required]],
+      salary: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
     });
 
     this.activatedRoute.data.subscribe(({ resolvedEmployeeData }) => {
@@ -69,7 +100,10 @@ export class FormComponent {
           department: this.form.value.department.id_department,
           position: this.form.value.position.id_position,
         })
-        .subscribe(()=>this.router.navigate(["/employees"]));
+        .subscribe(() => {
+          this.router.navigate(['/employees']);
+          alert('Employee successfully updated!');
+        });
     }
   }
 }
